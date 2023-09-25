@@ -12,7 +12,7 @@ function EditModal({ event, onClose }) {
   const { starttime, isNoonStart, endTime, isNoonEnd } = calculatetime(
     event?.startTime
   );
-  
+
   function handleSubmit(values) {
     dispatch({
       type: ACTIONS.EDIT_EVENT,
@@ -75,7 +75,7 @@ function EditModal({ event, onClose }) {
                   <p className="error-message">{errors.eventName}</p>
                 )}
 
-                <label htmlFor="eventColor">Event Color:</label>
+                <label htmlFor="eventColor">Set a Background Color</label>
                 <div className="color-options">
                   {predefinedColors.map((color) => (
                     <label key={color} className="color-label">

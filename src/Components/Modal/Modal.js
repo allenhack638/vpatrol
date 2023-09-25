@@ -77,12 +77,13 @@ function Modal({ startTime, onClose, dayIndex }) {
                   value={values.eventName}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  placeholder="e.g. meeting with CEO"
                 />
                 {errors.eventName && touched.eventName && (
                   <p className="error-message">{errors.eventName}</p>
                 )}
 
-                <label htmlFor="eventColor">Event Color:</label>
+                <label htmlFor="eventColor">Set a Background Color:</label>
                 <div className="color-options">
                   {predefinedColors.map((color) => (
                     <label key={color} className="color-label">

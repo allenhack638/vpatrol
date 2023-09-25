@@ -11,7 +11,13 @@
   margin: auto 20px;
 }
 .left-part {
-  margin-left: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: space-around;
+  align-items: center;
+}
+.left-part h1 {
+  margin-left: 10px;
 }
 .calendar-select {
   display: flex;
@@ -49,20 +55,29 @@
   display: flex;
   margin: auto 10px;
 }
-.navigation-button button{
-  background-color: #007BFF;
+.navigation-button button,
+.left-part button {
+  background-color: #007bff;
   color: #fff;
   border: none;
   border-radius: 5px;
   font-size: 16px;
   padding: 10px 20px;
-  cursor: pointer; 
+  cursor: pointer;
 }
-.right-part button {
+.right-part button,
+.left-part button {
   padding: 6px 20px;
   margin: 2px;
 }
-.right-part button p {
+.left-part button {
+  height: 30px;
+}
+.left-part button:hover {
+  text-decoration: underline;
+}
+.right-part button p,
+.left-part button p {
   padding: 0;
   margin: 0;
 }

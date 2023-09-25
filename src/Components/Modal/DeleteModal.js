@@ -48,7 +48,7 @@ function DeleteModal({ event, onClose }) {
             disabled
           />
 
-          <label htmlFor="eventColor">Event Color:</label>
+          <label htmlFor="eventColor">Background Color</label>
           <div className="color-options">
             {predefinedColors.map((color) => (
               <label key={color} className="color-label">

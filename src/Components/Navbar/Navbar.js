@@ -3,8 +3,10 @@ import { GlobalState } from "../Context/ContextProvider";
 import { getFormattedDate } from "../Functions/AllFunctions";
 import { useEffect, useState } from "react";
 import CustomCalendar from "../Calendar/CustomCalendar";
+import IntroModal from "../IntroModal/IntroModal";
 const Navbar = () => {
   const [selectedOption, setSelectedOption] = useState("week");
+  const [ShowIntroModal, setShowIntroModal] = useState(false);
   const {
     CurrentDate,
     setCurrentDate,
@@ -65,8 +67,16 @@ const Navbar = () => {
       {selectedOption === "monthly" && (
         <CustomCalendar onClose={() => setSelectedOption("week")} />
       )}
+      {ShowIntroModal && (
+        <IntroModal onClose={() => setShowIntroModal(false)} />
+      )}
       <nav className="navigation">
-        <h1 className="left-part">Timeline</h1>
+        <div className="left-part">
+          <h1>Timeline</h1>
+          <button onClick={() => setShowIntroModal(true)}>
+            <p>Getting Started</p>
+          </button>
+        </div>
         <div className="right-part">
           <div className="calendar-select">
             <p>&#128197;</p>
