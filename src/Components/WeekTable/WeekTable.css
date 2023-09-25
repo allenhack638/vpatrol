@@ -1,0 +1,150 @@
+.calender-table {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+}
+.week-styles {
+  border-radius: 20px;
+  background-color: rgb(117, 186, 246);
+}
+.second {
+  background-color: rgba(245, 245, 220, 0.157);
+}
+.second-section {
+  height: 100px;
+  outline: 1px double rgba(124, 124, 124, 0.08);
+  margin: 0;
+  padding: 0;
+}
+.second th .time {
+  margin: 0;
+  padding: 0;
+  margin-top: -9px;
+  width: 100%;
+  font-size: 14px;
+  color: gray;
+}
+.clickable {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  z-index: 0;
+}
+.event-time {
+  font-size: 13px;
+  margin: 0;
+  padding: 0;
+}
+.outer-div {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+.event-th {
+  position: relative;
+  height: 100%;
+  background-color: transparent;
+  padding: 0px 10px;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border-radius: 13% 0% 13% 0% / 12% 25% 12% 25%;
+  font-family: "Gill Sans Extrabold", sans-serif;
+  overflow: hidden;
+  color: rgba(22, 22, 22, 0.808);
+  text-align: left;
+}
+.event-name {
+  display: inline;
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
+  white-space: wrap;
+}
+.buttons-div {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+}
+.buttons-div:hover .delete-button {
+  animation: slide-in-left 300ms linear 1ms 1 normal forwards;
+}
+.buttons-div:hover .edit-button {
+  animation: slide-in-right 300ms linear 1ms 1 normal forwards;
+}
+.buttons-div button {
+  position: absolute;
+  height: 100%;
+  border: none;
+  width: 50%;
+  transition: tranform 300ms linear;
+}
+.buttons-div button i {
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+}
+.buttons-div button i:hover {
+  transform: scale(1.04);
+}
+.delete-button {
+  transform: translateX(-101%);
+  left: 0;
+  background-color: rgb(192, 57, 43);
+}
+.edit-button {
+  transform: translateX(101%);
+  right: 0;
+  background-color: rgb(52, 152, 219);
+}
+
+/* Keyframes for slide-in-right animation */
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-101%);
+  }
+  25% {
+    transform: translateX(-75%);
+  }
+  50% {
+    transform: translateX(-50%);
+  }
+  75% {
+    transform: translateX(-25%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(101%);
+  }
+  25% {
+    transform: translateX(75%);
+  }
+  50% {
+    transform: translateX(50%);
+  }
+  75% {
+    transform: translateX(25%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
