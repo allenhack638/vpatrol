@@ -1,10 +1,9 @@
 .container {
-  max-width: 1200px;
   margin: 0 auto;
+  max-width: 1200px;
 }
-
 .footer-content {
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: center;
 }
