@@ -1,8 +1,10 @@
 import "./Navbar.css";
 import { GlobalState } from "../Context/ContextProvider";
 import { getFormattedDate } from "../Functions/AllFunctions";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import CustomCalendar from "../Calendar/CustomCalendar";
 const Navbar = () => {
+  const [selectedOption, setSelectedOption] = useState("week");
   const {
     CurrentDate,
     setCurrentDate,
@@ -42,7 +44,7 @@ const Navbar = () => {
     });
     setCurrentEvents(weekEvents);
   }, [CurrentDate, GlobalEvents, setCurrentEvents, setGlobalEvents]);
-  
+
   const rangeEnd = new Date(CurrentDate);
   rangeEnd.setDate(CurrentDate.getDate() + 6);
 
@@ -59,33 +61,41 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navigation">
-      <h1 className="left-part">Timeline</h1>
+    <>
+      {selectedOption === "monthly" && (
+        <CustomCalendar onClose={() => setSelectedOption("week")} />
+      )}
+      <nav className="navigation">
+        <h1 className="left-part">Timeline</h1>
+        <div className="right-part">
+          <div className="calendar-select">
+            <p>&#128197;</p>
+            <select
+              name="date-dropdown"
+              id="date-dropdown"
+              onChange={(e) => setSelectedOption(e.target.value)}
+              value={selectedOption}
+            >
+              <option value="week">Week</option>
+              <option value="monthly">Monthly</option>
+            </select>
+          </div>
 
-      <div className="right-part">
-        <div className="calendar-select">
-          <p>&#128197;</p>
-          <select name="date-dropdown" id="date-dropdown">
-            <option value="week">Week</option>
-            <option value="monthy">Monthly</option>
-            <option value="yearly">Yearly</option>
-          </select>
+          <div className="current-range">
+            <p>{`${getFormattedDate(CurrentDate, rangeEnd)}, `}</p>
+            <p>{new Date(rangeEnd)?.getFullYear()}</p>
+          </div>
+          <div className="navigation-button">
+            <button onClick={decreaseWeekly}>
+              <p>{"<"}</p>
+            </button>
+            <button onClick={increaseWeekly}>
+              <p>{">"}</p>
+            </button>
+          </div>
         </div>
-
-        <div className="current-range">
-          <p>{getFormattedDate(CurrentDate, rangeEnd)}</p>
-        </div>
-
-        <div className="navigation-button">
-          <button onClick={decreaseWeekly}>
-            <p>{"<"}</p>
-          </button>
-          <button onClick={increaseWeekly}>
-            <p>{">"}</p>
-          </button>
-        </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 };
 

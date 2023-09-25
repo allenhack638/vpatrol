@@ -9,15 +9,35 @@
   grid-template-columns: repeat(8, 1fr);
 }
 .week-styles {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+}
+.week-styles div {
+  position: relative;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 90%;
   border-radius: 20px;
-  background-color: rgb(117, 186, 246);
+  font-weight: bold;
+  background-color: rgba(162, 115, 231, 0.899);
+}
+.week-styles p {
+  margin: 10px;
 }
 .second {
   background-color: rgba(245, 245, 220, 0.157);
 }
 .second-section {
   height: 100px;
-  outline: 1px double rgba(124, 124, 124, 0.08);
+  outline: 1px double rgba(124, 124, 124, 0.469);
   margin: 0;
   padding: 0;
 }
@@ -33,12 +53,18 @@
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  margin: 0;
   padding: 0;
-  z-index: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  margin: auto;
+  color: rgba(169, 169, 169, 0.789);
 }
 .event-time {
-  font-size: 13px;
+  font-size: 12px;
   margin: 0;
   padding: 0;
 }
@@ -112,7 +138,15 @@
   right: 0;
   background-color: rgb(52, 152, 219);
 }
-
+.badge {
+  position: absolute;
+  bottom: -15px;
+  width: 10px;
+  height: 10px;
+  background-color: rgb(22, 255, 1);
+  border-radius: 50%;
+  display: inline-block;
+}
 /* Keyframes for slide-in-right animation */
 @keyframes slide-in-left {
   0% {
@@ -146,5 +180,62 @@
   }
   100% {
     transform: translateX(0%);
+  }
+}
+@media (max-width: 1050px) {
+  .calender-table th {
+    height: 88.58px;
+  }
+  .event-th {
+    padding: 0px 8px;
+  }
+  .event-name {
+    font-size: 10px;
+  }
+  .event-time {
+    font-size: 10px;
+  }
+}
+@media (max-width: 915px) {
+  .event-name {
+    font-size: 10px;
+  }
+  .event-time {
+    font-size: 10px;
+  }
+  .calender-table th {
+    height: 78.74px;
+  }
+  .second th .time {
+    font-size: 12px;
+  }
+  .clickable {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    margin: auto;
+    color: rgba(169, 169, 169, 0.789);
+  }
+  .week-styles {
+    border-radius: 5px;
+  }
+  .week-styles p {
+    margin: auto;
+    font-size: 12px;
+  }
+}
+@media (max-width: 800px) {
+  .calender-table th {
+    height: 69px;
+  }
+  .time {
+    font-size: 10px;
+  }
+  .week-styles {
+    border-radius: 5px;
+  }
+  .week-styles p {
+    font-size: 10px;
   }
 }

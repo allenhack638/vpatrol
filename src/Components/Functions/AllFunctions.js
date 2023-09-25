@@ -85,3 +85,10 @@ export function truncateText(text, maxLength) {
   }
   return text;
 }
+
+export function LatestSunday(date = new Date()) {
+  const today = date;
+  const daysUntilSunday = 7 - today.getDay();
+  today.setDate(today.getDate() + daysUntilSunday - 7);
+  return today;
+}

@@ -25,7 +25,15 @@ function WeekTable() {
 
   const [ShowDeleteModal, setShowDeleteModal] = useState(false);
 
-  const indexArray = [0, 1, 2, 3, 4, 5, 6];
+  const indexArray = [false, false, false, false, false, false, false];
+  CurrentEvents?.forEach((events) => {
+    events?.forEach((event) => {
+      const eventDate = new Date(event?.date);
+      const dayOfWeek = eventDate?.getDay();
+      indexArray[dayOfWeek] = true;
+    });
+  });
+  console.log(indexArray);
 
   const addEventButton = (timeIndex, dayIndex) => {
     setStartTime(`${timeIndex + 8}:30`);
@@ -58,11 +66,14 @@ function WeekTable() {
           <thead>
             <tr className="row">
               <th></th>
-              {indexArray.map((day, index) => {
+              {indexArray.map((eventIsPresent, index) => {
                 return (
-                  <th key={day} className="week-styles">
-                    <p>{CalculateDate(index).day}</p>
-                    <p>{CalculateDate(index).weekday}</p>
+                  <th key={index} className="week-styles">
+                    <div>
+                      <p>{CalculateDate(index).day}</p>
+                      <p>{CalculateDate(index).weekday}</p>
+                      {eventIsPresent && <p className="badge"></p>}
+                    </div>
                   </th>
                 );
               })}
@@ -85,8 +96,8 @@ function WeekTable() {
                     <p className="time">{startTime}</p>
                   </th>
                   {eventsByTime.map((event, dayIndex) => (
-                    <th className="second-section">
-                      <div key={dayIndex} className="outer-div">
+                    <th className="second-section" key={dayIndex}>
+                      <div className="outer-div">
                         {event ? (
                           <div
                             style={{ backgroundColor: event.color }}
@@ -120,10 +131,9 @@ function WeekTable() {
                           </div>
                         ) : (
                           <div
-                            className="second-section clickable"
+                            className="clickable"
                             onClick={() => addEventButton(timeIndex, dayIndex)}
                           >
-                            <i class="fa fa-solid fa-calendar-plus"></i>
                             <span>Add an event</span>
                           </div>
                         )}

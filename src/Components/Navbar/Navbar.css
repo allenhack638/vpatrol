@@ -1,7 +1,6 @@
 .navigation {
   display: flex;
   justify-content: space-between;
-  /* outline: 1px solid black; */
   padding: 0px 10px;
 }
 .right-part {
@@ -10,6 +9,9 @@
   align-items: center;
   width: auto;
   margin: auto 20px;
+}
+.left-part {
+  margin-left: 20px;
 }
 .calendar-select {
   display: flex;
@@ -29,19 +31,32 @@
   justify-content: center;
   align-items: center;
   margin: auto 10px;
+  font-weight: bold;
 }
 .current-range p {
   display: flex;
   font-size: 20px;
+  margin: auto 3px;
 }
 .calendar-select select {
   border: none;
   font-size: 16px;
+  background-color: transparent;
+  outline: none;
   margin: 0;
 }
-.navigation-button{
-    display: flex;
-    margin: auto 10px;
+.navigation-button {
+  display: flex;
+  margin: auto 10px;
+}
+.navigation-button button{
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 10px 20px;
+  cursor: pointer; 
 }
 .right-part button {
   padding: 6px 20px;

@@ -23,7 +23,7 @@ function DeleteModal({ event, onClose }) {
           &times;
         </span>
         <h2>Delete this Event</h2>
-        <form onSubmit={handleSubmit}>
+        <form>
           <label htmlFor="startTime">Start Time:</label>
           <input
             type="text"
@@ -65,7 +65,7 @@ function DeleteModal({ event, onClose }) {
               </label>
             ))}
           </div>
-          <button type="submit" className="modal-delete-button">
+          <button type="button" className="modal-delete-button" onClick={handleSubmit} >
             Delete
           </button>
         </form>
