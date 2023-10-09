@@ -92,3 +92,58 @@ export function LatestSunday(date = new Date()) {
   today.setDate(today.getDate() + daysUntilSunday - 7);
   return today;
 }
+export function convertTo24Hour(time12h) {
+  if (!time12h) return;
+
+  const [time, period] = time12h.split(" ");
+  const [hour, minute] = time.split(":");
+
+  let hour24 = parseInt(hour, 10);
+
+  if (period === "PM" && hour24 !== 12) {
+    // Add 12 hours to the hour if it's PM (except for 12 PM)
+    hour24 += 12;
+  } else if (period === "AM" && hour24 === 12) {
+    // Handle 12 AM (midnight) by setting it to 0
+    hour24 = 0;
+  }
+
+  // Format the hour and minute as two-digit strings
+  const formattedHour = hour24.toString().padStart(2, "0");
+  const formattedMinute = minute.padStart(2, "0");
+
+  return `${formattedHour}:${formattedMinute}`;
+}
+export const startTimes = [
+  "08:30 AM",
+  "09:30 AM",
+  "10:30 AM",
+  "11:30 AM",
+  "12:30 PM",
+  "01:30 PM",
+  "02:30 PM",
+  "03:30 PM",
+  "04:30 PM",
+  "05:30 PM",
+  "06:30 PM",
+  "07:30 PM",
+  "08:30 PM",
+];
+
+export function compareTimes(time1, time2) {
+  const [hours1] = time1.split(":").map(Number);
+  const [hours2] = time2.split(":").map(Number);
+
+  if (hours1 < hours2) {
+    return -1;
+  } else if (hours1 === hours2) {
+    return 0;
+  } else {
+    return 1;
+  }
+}
+export const options = {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+};

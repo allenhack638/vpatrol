@@ -1,0 +1,83 @@
+/* App.css */
+.event-container {
+  margin-bottom: 10px;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.event-container:hover {
+  background-color: #f5f5f5;
+  transform: translateY(-2px);
+}
+
+.event-button {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+  width: 100%;
+}
+.event-button p {
+  margin: 0 auto;
+  padding: 0;
+}
+
+.event-button:hover {
+  background-color: #2980b9;
+}
+
+.event-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-delete-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+.delete-modal {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  position: relative;
+  transition: transform 0.3s ease;
+  transform: translateY(0); /* Start at initial position */
+}
+p {
+  margin-bottom: 10px;
+}
+
+.confirm-button,
+.cancel-button {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.confirm-button:hover,
+.cancel-button:hover {
+  background-color: #2980b9;
+}
+.delete-modal.slide-in {
+  transform: translateY(-50%);
+}

@@ -7,13 +7,9 @@ import IntroModal from "../IntroModal/IntroModal";
 const Navbar = () => {
   const [selectedOption, setSelectedOption] = useState("week");
   const [ShowIntroModal, setShowIntroModal] = useState(false);
-  const {
-    CurrentDate,
-    setCurrentDate,
-    setCurrentEvents,
-    GlobalEvents,
-    setGlobalEvents,
-  } = GlobalState();
+
+  const { CurrentDate, setCurrentDate, setCurrentEvents, GlobalEvents } =
+    GlobalState();
 
   useEffect(() => {
     const currentDate = new Date(CurrentDate);
@@ -30,9 +26,9 @@ const Navbar = () => {
       return eventDate >= startDate && eventDate <= endDate;
     });
 
-    const weekEvents = Array(13)
+    const weekEvents = Array(7)
       .fill(null)
-      .map(() => Array(7).fill(null));
+      .map(() => Array(13).fill(null));
 
     eventsWithinWeek.forEach((event) => {
       const eventDate = new Date(event.date);
@@ -41,11 +37,11 @@ const Navbar = () => {
       const [hours] = startTime.split(":").map(Number);
       const timeIndex = hours - 8;
       if (dayIndex >= 0 && dayIndex < 7 && timeIndex >= 0 && timeIndex < 13) {
-        weekEvents[timeIndex][dayIndex] = event;
+        weekEvents[dayIndex][timeIndex] = event;
       }
     });
     setCurrentEvents(weekEvents);
-  }, [CurrentDate, GlobalEvents, setCurrentEvents, setGlobalEvents]);
+  }, [CurrentDate, GlobalEvents, setCurrentEvents]);
 
   const rangeEnd = new Date(CurrentDate);
   rangeEnd.setDate(CurrentDate.getDate() + 6);

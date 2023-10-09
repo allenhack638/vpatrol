@@ -36,18 +36,20 @@
   background-color: rgba(245, 245, 220, 0.157);
 }
 .second-section {
-  height: 100px;
+  height: 75px;
   outline: 1px double rgba(124, 124, 124, 0.469);
   margin: 0;
   padding: 0;
 }
-.second th .time {
+
+.time {
   margin: 0;
   padding: 0;
   margin-top: -9px;
   width: 100%;
   font-size: 14px;
   color: gray;
+  text-align: center;
 }
 .clickable {
   cursor: pointer;
@@ -83,7 +85,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  border-radius: 13% 0% 13% 0% / 12% 25% 12% 25%;
   font-family: "Gill Sans Extrabold", sans-serif;
   overflow: hidden;
   color: rgba(22, 22, 22, 0.808);
@@ -95,6 +96,8 @@
   margin: 0;
   font-size: 12px;
   white-space: wrap;
+  /* color: black; */
+  font-weight: bold;
 }
 .buttons-div {
   height: 100%;
@@ -106,12 +109,6 @@
   right: 0;
   display: flex;
   justify-content: center;
-}
-.buttons-div:hover .delete-button {
-  animation: slide-in-left 300ms linear 1ms 1 normal forwards;
-}
-.buttons-div:hover .edit-button {
-  animation: slide-in-right 300ms linear 1ms 1 normal forwards;
 }
 .buttons-div button {
   position: absolute;
@@ -147,7 +144,18 @@
   border-radius: 50%;
   display: inline-block;
 }
-/* Keyframes for slide-in-right animation */
+.button-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
+}
+.onTodayEvent {
+  color: black;
+  border-top: 1px solid gray;
+}
+
 @keyframes slide-in-left {
   0% {
     transform: translateX(-101%);

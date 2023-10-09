@@ -58,8 +58,7 @@ input[type="color"] {
   padding: 8px;
 }
 
-button[type="submit"],
-button[type="button"] {
+.add-button {
   background-color: #007bff;
   color: #fff;
   border: none;
@@ -117,6 +116,9 @@ button[type="button"] {
 }
 .add-button:hover {
   background-color: rgb(17, 134, 17) !important;
+}
+.not-found {
+  text-align: center;
 }
 
 @media (max-width: 1000px) {

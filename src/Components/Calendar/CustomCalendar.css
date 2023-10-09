@@ -17,12 +17,7 @@
   margin: auto;
   font-size: 16px;
 }
-.custom-calendar-button-div input {
-  margin: auto;
-  font-size: 16px;
-  padding: 2px;
-}
-.custom-modal-content button {
+.custom-modal-content .go-button {
   background-color: #007bff;
   color: #fff;
   border: none;
@@ -31,8 +26,8 @@
   cursor: pointer;
   border-radius: 5px;
 }
-.custom-modal-content button:hover {
-  background-color: #0056b3; /* Button background color on hover */
+.custom-mpxpxodal-content .go-button:hover {
+  background-color: #0056b3;
 }
 
 .custom-modal-content span {
@@ -51,6 +46,24 @@
   align-items: center;
   gap: 5px;
 }
+.react-calendar__month-view__days button {
+  position: relative;
+}
+.dateBadge {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  background-color: blue;
+  border-radius: 50%;
+}
+.dateBadge:hover::before,
+.dateBadge:hover::after {
+  opacity: 1;
+}
+
 @media (max-width: 1000px) {
   .custom-modal-content {
     top: 20%;

@@ -1,14 +1,11 @@
 import { createContext, useState, useContext, useReducer } from "react";
 import { LatestSunday } from "../Functions/AllFunctions";
-import { v4 as uuidv4 } from "uuid";
 const GlobalContext = createContext();
 
 const GlobalContextProvider = ({ children }) => {
   const ACTIONS = {
-    EDIT_EVENT: "edit-event",
     DELETE_EVENT: "delete-event",
     ADD_EVENT: "add-event",
-    EDIT_EVENT: "edit-event",
   };
 
   const events = [];
@@ -17,8 +14,10 @@ const GlobalContextProvider = ({ children }) => {
     switch (action.type) {
       case ACTIONS.DELETE_EVENT:
         return state.filter((event) => event.id !== action.payload);
-      case ACTIONS.ADD_EVENT:
-        return [...state, { ...action.payload, id: uuidv4() }];
+      case ACTIONS.ADD_EVENT: {
+        console.log(action.payload);
+        return [...state, { ...action.payload }];
+      }
       case ACTIONS.EDIT_EVENT:
         return state.map((event) =>
           event.id === action.payload.id
@@ -32,9 +31,9 @@ const GlobalContextProvider = ({ children }) => {
 
   const [CurrentDate, setCurrentDate] = useState(LatestSunday);
   const [CurrentEvents, setCurrentEvents] = useState(
-    Array(13)
+    Array(7)
       .fill(null)
-      .map(() => Array(7).fill(null))
+      .map(() => Array(13).fill(null))
   );
   const [GlobalEvents, dispatch] = useReducer(reducerFunction, events);
 
@@ -45,7 +44,6 @@ const GlobalContextProvider = ({ children }) => {
         setCurrentDate,
         GlobalEvents,
         ACTIONS,
-        // setGlobalEvents,
         CurrentEvents,
         setCurrentEvents,
         dispatch,
