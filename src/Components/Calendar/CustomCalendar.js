@@ -43,21 +43,21 @@ function CustomCalendar({ onClose }) {
           </h2>
         )}
 
-        <div className="custom-calendar-button-div">
-          <div className="go-to-date">
-            <button
-              className="go-button"
-              onClick={() => {
-                setCurrentDate(
-                  LatestSunday(new Date(selectedDate && selectedDate))
-                );
-                onClose();
-              }}
-            >
-              Go
-            </button>
+        {selectedDate && (
+          <div className="custom-calendar-button-div">
+            <div className="go-to-date">
+              <button
+                className="go-button"
+                onClick={() => {
+                  setCurrentDate(LatestSunday(new Date(selectedDate)));
+                  onClose();
+                }}
+              >
+                Go
+              </button>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
