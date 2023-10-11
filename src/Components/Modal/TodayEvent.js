@@ -108,13 +108,13 @@ import { CalculateDate, compareTimes } from "../Functions/AllFunctions";
 import { EventDropdown } from "./EventDropdown";
 import { GlobalState } from "../Context/ContextProvider";
 
-function EditModal({ onClose, dayIndex }) {
-  const { CurrentEvents, ACTIONS, dispatch } = GlobalState();
-  const { oriDate } = CalculateDate(dayIndex);
+function TodayEvent({ onClose, dayIndex }) {
+  const { ACTIONS, dispatch, state } = GlobalState();
+  const { fullDate } = CalculateDate(dayIndex);
 
   const uniqueEvents = {};
 
-  CurrentEvents[dayIndex]?.forEach((event) => {
+  state.currEvents[dayIndex]?.forEach((event) => {
     if (event) {
       const id = event.id;
       if (!uniqueEvents[id]) {
@@ -159,7 +159,7 @@ function EditModal({ onClose, dayIndex }) {
           &times;
         </span>
         <h2> Today's events</h2>
-        <p className="modal-date">{oriDate}</p>
+        <p className="modal-date">{fullDate}</p>
         <div>
           {uniqueEventsArray?.map(
             (event) =>
@@ -173,10 +173,12 @@ function EditModal({ onClose, dayIndex }) {
           )}
         </div>
 
-        {uniqueEventsArray?.length === 0 && <p className="not-found">No events Found</p>}
+        {uniqueEventsArray?.length === 0 && (
+          <p className="not-found">No events Found</p>
+        )}
       </div>
     </div>
   );
 }
 
-export default EditModal;
+export default TodayEvent;

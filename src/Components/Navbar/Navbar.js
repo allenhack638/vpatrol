@@ -8,12 +8,10 @@ const Navbar = () => {
   const [selectedOption, setSelectedOption] = useState("week");
   const [ShowIntroModal, setShowIntroModal] = useState(false);
 
-  const { CurrentDate, setCurrentDate, setCurrentEvents, GlobalEvents } =
-    GlobalState();
+  const { state, ACTIONS, dispatch } = GlobalState();
 
   useEffect(() => {
-    const currentDate = new Date(CurrentDate);
-
+    const currentDate = state.currDate;
     const startDate = new Date(currentDate);
     startDate.setHours(0, 0, 0, 0);
 
@@ -21,7 +19,7 @@ const Navbar = () => {
     endDate.setDate(currentDate.getDate() + 6);
     endDate.setHours(23, 59, 59, 999);
 
-    const eventsWithinWeek = GlobalEvents.filter((event) => {
+    const eventsWithinWeek = state.globalEvents.filter((event) => {
       const eventDate = new Date(event.date);
       return eventDate >= startDate && eventDate <= endDate;
     });
@@ -40,22 +38,22 @@ const Navbar = () => {
         weekEvents[dayIndex][timeIndex] = event;
       }
     });
-    setCurrentEvents(weekEvents);
-  }, [CurrentDate, GlobalEvents, setCurrentEvents]);
+    dispatch({ type: ACTIONS.SET_CURRENT_EVENTS, payload: weekEvents });
+  }, [state.currDate, state.globalEvents]);
 
-  const rangeEnd = new Date(CurrentDate);
-  rangeEnd.setDate(CurrentDate.getDate() + 6);
+  const rangeEnd = new Date(state.currDate);
+  rangeEnd.setDate(state.currDate.getDate() + 6);
 
   const increaseWeekly = () => {
-    const temp = new Date(CurrentDate);
-    temp.setDate(CurrentDate.getDate() + 7);
-    setCurrentDate(temp);
+    const temp = new Date(state?.currDate);
+    temp.setDate(state?.currDate.getDate() + 7);
+    dispatch({ type: ACTIONS.SET_DATE, payload: temp });
   };
 
   const decreaseWeekly = () => {
-    const temp = new Date(CurrentDate);
-    temp.setDate(CurrentDate.getDate() - 7);
-    setCurrentDate(temp);
+    const temp = new Date(state?.currDate);
+    temp.setDate(state?.currDate.getDate() - 7);
+    dispatch({ type: ACTIONS.SET_DATE, payload: temp });
   };
 
   return (
@@ -88,7 +86,7 @@ const Navbar = () => {
           </div>
 
           <div className="current-range">
-            <p>{`${getFormattedDate(CurrentDate, rangeEnd)}, `}</p>
+            <p>{`${getFormattedDate(state.currDate, rangeEnd)}, `}</p>
             <p>{new Date(rangeEnd)?.getFullYear()}</p>
           </div>
           <div className="navigation-button">

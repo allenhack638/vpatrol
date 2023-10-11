@@ -7,7 +7,7 @@ import Footer from "../Footer/Footer";
 
 function Calendar() {
   const [ShowIntroModal, setShowIntroModal] = useState(false);
-  
+
   useEffect(() => {
     const hasModalBeenShown = localStorage.getItem("introModalShown");
     if (!hasModalBeenShown) {

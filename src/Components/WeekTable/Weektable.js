@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./WeekTable.css";
 
 import Modal from "../Modal/Modal";
-import EditModal from "../Modal/EditModal";
+import TodayEvent from "../Modal/TodayEvent";
 
 import { GlobalState } from "../Context/ContextProvider";
 import {
@@ -13,14 +13,15 @@ import {
 } from "../Functions/AllFunctions";
 
 function WeekTable() {
-  const { CurrentEvents } = GlobalState();
+  const { state } = GlobalState();
+  console.log(state);
   const indexArray = [false, false, false, false, false, false, false];
 
   const [ShowModal, setShowModal] = useState(false);
   const [ClickedDate, setClickedDate] = useState();
   const [ShowEditModal, setShowEditModal] = useState(false);
 
-  CurrentEvents?.forEach((events) => {
+  state.currEvents?.forEach((events) => {
     events?.forEach((event) => {
       const eventDate = new Date(event?.date);
       const dayOfWeek = eventDate?.getDay();
@@ -43,7 +44,7 @@ function WeekTable() {
       )}
 
       {ShowEditModal && (
-        <EditModal
+        <TodayEvent
           onClose={() => setShowEditModal(false)}
           dayIndex={ClickedDate}
         />
@@ -100,7 +101,7 @@ function WeekTable() {
                     <p className="time">{startTime}</p>
                   </td>
                   {Array.from({ length: 7 }, (_, dayIndex) => {
-                    const event = CurrentEvents[dayIndex][timeIndex];
+                    const event = state.currEvents[dayIndex][timeIndex];
                     return (
                       <td className="second-section" key={dayIndex}>
                         <div className="outer-div">

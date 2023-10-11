@@ -1,12 +1,13 @@
 import { GlobalState } from "../Context/ContextProvider";
 
 export const CalculateDate = (index) => {
-  const { CurrentDate } = GlobalState();
-  if (!(CurrentDate instanceof Date)) {
+  const { state } = GlobalState();
+
+  if (!(state.currDate instanceof Date)) {
     return "Invalid date input";
   }
-  const temp = new Date(CurrentDate);
-  temp.setDate(CurrentDate.getDate() + index);
+  const temp = new Date(state.currDate);
+  temp.setDate(state.currDate.getDate() + index);
   const options = {
     weekday: "short",
     day: "numeric",
@@ -15,7 +16,13 @@ export const CalculateDate = (index) => {
   const formattedDate = temp.toLocaleString("en-US", options);
   const [day, weekday, year] = formattedDate.split(" ");
   const [dd, mm, yyyy] = temp.toLocaleDateString().split("/");
-  return { day, weekday, year, oriDate: `${mm}/${dd}/${yyyy}` };
+  return {
+    day,
+    weekday,
+    year,
+    oriDate: `${mm}/${dd}/${yyyy}`,
+    fullDate: temp.toLocaleString("en-US", { ...options, month: "short" }),
+  };
 };
 export function calculateTime12hrsFromIndex(index) {
   const hours = index + 8;
@@ -86,7 +93,7 @@ export function truncateText(text, maxLength) {
   return text;
 }
 
-export function LatestSunday(date = new Date()) {
+export function LatestSunday(date = new Date(Date.now())) {
   const today = date;
   const daysUntilSunday = 7 - today.getDay();
   today.setDate(today.getDate() + daysUntilSunday - 7);

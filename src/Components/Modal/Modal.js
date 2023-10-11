@@ -12,11 +12,10 @@ import {
 import { GlobalState } from "../Context/ContextProvider";
 
 function Modal({ onClose, dayIndex }) {
-
-  const { dispatch, ACTIONS, CurrentEvents } = GlobalState();
+  const { dispatch, ACTIONS, state } = GlobalState();
   const [selectedColor, setSelectedColor] = useState("#ffd6c4");
   const { day, weekday, year, oriDate } = CalculateDate(dayIndex);
-  
+
   const initialValues = {
     eventName: "",
     newStart: "",
@@ -34,14 +33,13 @@ function Modal({ onClose, dayIndex }) {
     if (convertTo24Hour(values?.newStart) > convertTo24Hour(values?.newEnd)) {
       errors.newEnd = "End time must be greater than Start time";
     }
-    // ["8:30am - 9:30am","9:30am-10:30am1",""]
     if (values.newStart && values.newEnd) {
       const { newStart, newEnd } = values;
       const startHour = Number(convertTo24Hour(newStart).split(":")[0]) - 8;
       const endHour = Number(convertTo24Hour(newEnd).split(":")[0]) - 8;
 
       for (let hour = startHour; hour < endHour; hour++) {
-        if (CurrentEvents[dayIndex][hour]) {
+        if (state.currEvents[dayIndex][hour]) {
           errors.newEnd = "Overlapping Time Selection";
           break;
         }
