@@ -3,7 +3,7 @@ import { GlobalState } from "../Context/ContextProvider";
 import { LatestSunday, options } from "../Functions/AllFunctions";
 import Calendar from "react-calendar";
 
-import "/node_modules/react-calendar/dist/Calendar.css";
+import "react-calendar/dist/Calendar.css";
 import "./CustomCalendar.css";
 
 function CustomCalendar({ onClose }) {
